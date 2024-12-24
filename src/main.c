@@ -16,9 +16,10 @@ int main(){
 	TO_ajouterTache(&liste, "IHM SDL", 1000);
 	TO_validerTache(&liste, 2);
 	bool exit = false;
+	IHM_Menu scene = MENU;
 	while(!exit){
-		IHM_afficherTerminal(liste);
-		IHM_gererEntrees(&liste, &exit);
+		IHM_afficher(liste, scene);
+		IHM_gererEntrees(&liste, &exit, &scene);
 	}
 	TO_supprimerListe(&liste);
 }

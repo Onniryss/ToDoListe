@@ -5,6 +5,8 @@
 #include "tache.h"
 #include "listeChaineeTache.h"
 
+#define TAILLE_DESCRIPTION 16
+
 typedef LCT_ListeChainee TO_TodoListe;
 
 TO_TodoListe TO_listeVide();
