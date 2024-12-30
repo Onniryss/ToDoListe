@@ -2,8 +2,9 @@
 #include "tache.h"
 #include "listeChaineeTache.h"
 #include <stdio.h>
+#include <string.h>
 
-#define JOURS 24*60*60
+#define TAILLE_DESCRIPTION 16
 
 typedef LCT_ListeChainee TO_TodoListe;
 
@@ -15,13 +16,19 @@ TA_Tache TO_obtenirTache(TO_TodoListe liste, int indice){
     return LCT_iemeElement(liste, indice);
 }
 
+int TO_nombreTaches(TO_TodoListe liste){
+    return LCT_longueur(liste);
+}
+
 void TO_ajouterTache(TO_TodoListe* liste, char* description, long int tempsRestant){
+    char* descriptionTache = (char*)malloc(TAILLE_DESCRIPTION*sizeof(char));
+    memcpy(descriptionTache, description, strlen(description));
     TA_Tache* tache = (TA_Tache*)malloc(sizeof(TA_Tache));
     TA_fixerEtat(tache, 0);
     TA_fixerDateDebut(tache, time(NULL));
     TA_fixerDateFin(tache, time(NULL)+tempsRestant*JOURS);
-    TA_fixerDescription(tache, description);
-    TA_fixerNumero(tache, 0);
+    TA_fixerDescription(tache, descriptionTache);
+    TA_fixerNumero(tache, TO_nombreTaches(*liste));
     LCT_ajouter(liste, *tache);
 }
 
@@ -39,10 +46,6 @@ void TO_invaliderTache(TO_TodoListe* liste, int indice){
     TA_Tache tache = LCT_iemeElement(*liste, indice);
     TA_fixerEtat(&tache, 0);
     LCT_fixerIemeElement(liste, tache, indice);
-}
-
-int TO_nombreTaches(TO_TodoListe liste){
-    return LCT_longueur(liste);
 }
 
 void TO_supprimerListe(TO_TodoListe* liste){

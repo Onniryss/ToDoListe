@@ -12,10 +12,10 @@
 typedef enum {MENU, TACHES, AJOUT, SUPPRESSION} IHM_Menu;
 
 void IHM_gererEntreesMenu(TO_TodoListe* liste, bool* exit, IHM_Menu* scene);
-void IHM_gererEntreesAjout(TO_TodoListe* liste, bool* exit, IHM_Menu* scene);
+void IHM_gererEntreesAjout(TO_TodoListe* liste, bool* exit, IHM_Menu* scene, char* description, int* nbJours);
 void IHM_gererEntreesSuppression(TO_TodoListe* liste, bool* exit, IHM_Menu* scene);
 void IHM_gererEntreesTaches(TO_TodoListe* liste, bool* exit, IHM_Menu* scene);
-void IHM_gererEntrees(TO_TodoListe* liste, bool* exit, IHM_Menu* scene);
+void IHM_gererEntrees(TO_TodoListe* liste, bool* exit, IHM_Menu* scene, char* description, int* nbJours);
 void IHM_afficherMenu();
 void IHM_afficherAjout(TO_TodoListe liste);
 void IHM_afficherSuppression(TO_TodoListe liste);

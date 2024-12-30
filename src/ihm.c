@@ -31,10 +31,8 @@ void IHM_gererEntreesMenu(TO_TodoListe* liste, bool* exit, IHM_Menu* scene){
     }
 }
 
-void IHM_gererEntreesAjout(TO_TodoListe* liste, bool* exit, IHM_Menu* scene){
+void IHM_gererEntreesAjout(TO_TodoListe* liste, bool* exit, IHM_Menu* scene, char* description, int* nbJours){
     char key;
-    char* description = (char*)malloc(TAILLE_DESCRIPTION*sizeof(char));
-    int nbJours = 42;
     scanf("%c", &key);
     switch (key){
         case '1':
@@ -43,10 +41,10 @@ void IHM_gererEntreesAjout(TO_TodoListe* liste, bool* exit, IHM_Menu* scene){
             break;
         case '2':
             gotoxy(56, 15);
-            scanf("%d", &nbJours);
+            scanf("%d", nbJours);
             break;
         case '3':
-            TO_ajouterTache(liste, description, nbJours);
+            TO_ajouterTache(liste, description, *nbJours);
             *scene = MENU;
             break;
         case '4': // annuler
@@ -101,7 +99,7 @@ void IHM_gererEntreesTaches(TO_TodoListe* liste, bool* exit, IHM_Menu* scene){
     }
 }
 
-void IHM_gererEntrees(TO_TodoListe* liste, bool* exit, IHM_Menu* scene){
+void IHM_gererEntrees(TO_TodoListe* liste, bool* exit, IHM_Menu* scene, char* description, int* nbJours){
     switch (*scene){
         case MENU:
             IHM_gererEntreesMenu(liste, exit, scene);
@@ -110,7 +108,7 @@ void IHM_gererEntrees(TO_TodoListe* liste, bool* exit, IHM_Menu* scene){
             IHM_gererEntreesTaches(liste, exit, scene);
             break;
         case AJOUT:
-            IHM_gererEntreesAjout(liste, exit, scene);
+            IHM_gererEntreesAjout(liste, exit, scene, description, nbJours);
             break;
         case SUPPRESSION:
             IHM_gererEntreesSuppression(liste, exit, scene);

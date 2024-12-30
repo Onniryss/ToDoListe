@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <time.h>
 
+#define JOURS 24*60*60
+
 typedef struct {
     long int numero;
     bool etat;
